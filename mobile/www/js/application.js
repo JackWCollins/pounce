@@ -47,8 +47,8 @@ angular.module('starter', ['ionic', 'starter.controllers']).run(function($ionicP
   return $urlRouterProvider.otherwise('/app/playlists');
 });
 
-angular.module('starter.controllers', []).controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-  $scope.loginData = {};
+angular.module('starter.controllers', []).controller('AppCtrl', function($scope, $ionicModal, $timeout, $ionicPopup, UserSession) {
+  $scope.user = {};
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
   }).then(function(modal) {
@@ -61,7 +61,8 @@ angular.module('starter.controllers', []).controller('AppCtrl', function($scope,
     return $scope.modal.show();
   };
   return $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+    var userSession;
+    userSession = console.log('Doing login', $scope.user);
     return $timeout((function() {
       return $scope.closeLogin();
     }), 1000);
@@ -89,3 +90,8 @@ angular.module('starter.controllers', []).controller('AppCtrl', function($scope,
     }
   ];
 }).controller('PlaylistCtrl', function($scope, $stateParams) {});
+
+angular.module('starter.services', []).service('UserSessionService', function($resource) {
+  var UserSession;
+  return UserSession = $resource("http://localhost:3000/users/sign_in.json");
+});

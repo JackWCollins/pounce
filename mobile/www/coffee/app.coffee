@@ -5,8 +5,9 @@
 # 'starter.controllers' is found in controllers.js
 
 angular.module('starter', [
-  'ionic'
-  'starter.controllers'
+  'ionic',
+  'starter.controllers',
+  'starter.services'
 ])
 
 .run(($ionicPlatform) ->
@@ -21,7 +22,9 @@ angular.module('starter', [
     StatusBar.styleDefault() if window.StatusBar
 )
 
-.config ($stateProvider, $urlRouterProvider) ->
+.config ($stateProvider, $urlRouterProvider, $httpProvider) ->
+  $httpProvider.defaults.withCredentials = true
+
   $stateProvider
     .state('app',
       url: '/app'
