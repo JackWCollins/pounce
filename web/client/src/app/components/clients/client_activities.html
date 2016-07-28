@@ -6,9 +6,28 @@
       </md-tab-label>
       <md-tab-body>
         <h1 class="md-display-2">Showings</h1>
-        <ul>
-          <li ng-repeat="showing in clientCtrl.showingCount">A Showing!</li>
-        </ul>
+        <md-card ng-repeat="showing in clientCtrl.showings">
+          <md-card-title>
+            <md-card-title-text>
+              <span class="md-headline">{{showing.title}}</span>
+              <span class="md-subhead">{{showing.time}}</span>
+            </md-card-title-text>
+          </md-card-title>
+          <md-card-actions layout="row" layout-align="start center">
+            <md-button>View Details</md-button>
+            <md-button>Reschedule</md-button>
+            <md-card-icon-actions>
+              <md-button class="md-icon-button" aria-label="icon">
+                <md-icon md-svg-icon="icon"></md-icon>
+              </md-button>
+            </md-card-icon-actions>
+          </md-card-actions>
+          <md-card-content>
+            <p>
+              {{showing.notes}}
+            </p>
+          </md-card-content>
+        </md-card>
       </md-tab-body>
     </md-tab>
     <md-tab>
